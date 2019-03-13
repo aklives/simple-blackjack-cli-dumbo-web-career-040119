@@ -27,21 +27,22 @@ def initial_round
   card2 = deal_card
   card_total = card1 + card2
   display_card_total card_total
-  card_total
+  return card_total
 end
 
 def hit? card_total
   prompt_user
   input = get_user_input
   if input == 'h'
-    card_total = card_total + deal_card
+    new_card = deal_card
+    card_total = card_total + new_card
   elsif input == 's'
     nil
   else
     invalid_command
     prompt_user
   end
-card_total
+return card_total
 end
 
 def invalid_command
@@ -56,8 +57,8 @@ def runner
   welcome
   card_total = initial_round
   until card_total > 21
-    hit? card_total
+    card_total = hit? card_total
     display_card_total card_total
   end
-end_game card_total
+  end_game card_total
 end
